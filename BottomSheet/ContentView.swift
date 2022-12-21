@@ -8,16 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var presentSheet = false
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("Expandable BottomSheet")
+                .font(.headline)
+                .foregroundColor(.primary)
+            Button("Show BottomSheet") {
+                presentSheet.toggle()
+            }
+            .buttonStyle(.borderedProminent)
+            .sheet(isPresented: $presentSheet){
+                Text("This is a Bottom Sheet")
+                    .presentationDetents([.medium, .large])
+            }
         }
         .padding()
     }
 }
+
+//.presentationDetents([.medium, .large]) or .fraction(0.25) or .fraction(0.50) or .height(100)
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
